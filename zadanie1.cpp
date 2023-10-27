@@ -1,31 +1,36 @@
+// ### Zadanie 1 ###
+// Napisz program, który wypisze na ekranie wszystkie liczby pierwsze z zadanego zakresu. Zakres mozna podać w kodzie programu.
 
-// ###### Zadanie 1 #########
-// Napisz program obliczający sumę liczb nieparzystych z przedziału <x,y>. Wartości x i y podaje użytkownik.
+// Liczba pierwsza ma dokładnie 2 dzielniki - 1 i samą siebie.
 
 #include <iostream>
 using namespace std;
 
+bool czyPierwsza(int x) {
+    for (int i = 2; i < x; i++) {
+        if ((x % i) == 0) { return false; }
+    }
+    return true;
+}
+
 int main() {
 
-    // Input od użytkownika
-    int poczPrzedz, konPrzedz;
+    //Input od użytkownika
+    int poczZakr, konZakr;
     for (bool i : { true, false }) {
-        cout << "Prosze podac " << (i ? "poczatek" : "koniec")
-            << " przedzialu do obliczania sumy liczb nieparzystych: "
+        cout << "Prosze podac " << (i == true ? "poczatek" : "koniec")
+            << " zakresu do wyszukiwania liczb pierwszych : "
             << endl;
-        cin >> (i ? poczPrzedz : konPrzedz);
+        cin >> (i ? poczZakr : konZakr);
     }
     
-    // Sprawdzenie poprawnosci wartosci nie zostalo zawarte w zadaniu
-    // dlatego nie znajdzie się w rozwiązaniu
-    cout << "suma liczb nieparzystych w tym zakresie to:" << endl;
+    //Tu byłaby kontrola poprawności wartości, ale nie jest wymagana w zadaniu.
+    cout << "dobrze, a wiec liczby pierwsze w tym zakresie to:" << endl;
 
-    int sumaKoncowa = 0;
-
-    for (int x = poczPrzedz; x <= konPrzedz; x++) {
-        if ((x % 2) != 0) {
-            sumaKoncowa += x;
+    for (int x = poczZakr; x < konZakr; x++) {
+        if (czyPierwsza(x)) {
+            cout << x << " ";
         }
     }
-    cout << sumaKoncowa << endl;
+    cout << endl;
 }
